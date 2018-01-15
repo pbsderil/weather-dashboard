@@ -1,0 +1,57 @@
+body{
+  background-color : #e2ebf9;
+}
+.header{
+  height: 63px;
+  position: fixed;
+  background-color: #71bbbb;
+  width: 100%;
+  top:0;
+  z-index:1;
+  background-color: #3c4a90;
+}
+.header-text{
+  font-size: 30px;
+  font-style: italic;
+  color: white;
+}
+.view-port{
+  top: 63px;
+  position: fixed;
+  width: 100%;
+  height: 82px;
+  padding-top: 25px;
+  background-color: #e2ebf9;
+  z-index: 1;
+}
+.weather-box{
+  height: 118px;
+  padding-left: 4%;
+  padding-top: 1%;
+  border: 1px solid grey;
+  border-radius: 6px;
+  box-sizing: border-box;
+  margin-right: 2%;
+  margin-top: 2%;
+  box-shadow: #a1b1b3 3px 4px 11px 2px;
+  cursor:pointer;
+}
+#map{
+  height: 350px;
+  width: 78%;
+  float:left;
+}
+.temp-text{
+  font-size: 35px;
+}
+.city-name{
+  text-align: center;
+  font-size: 19px;  
+  font-weight: bold;
+}
+.map-weather-text{
+  float: right;
+  margin-right: 4%;
+  margin-top: 10%;
+  text-decoration: underline;
+}

@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-md-3 "  data-toggle="modal" data-target="#exampleModal" ng-click="setData(item)" ng-repeat="item in cities">
+		<div class="weather-box">
+			<div class="row">
+				<div class="col-md-12 city-name">
+					{{item.request[0].query.split(',')[0]}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<img src="{{item.current_condition[0].weatherIconUrl[0].value}}" style="width:50px;">
+					<br/>{{item.current_condition[0].weatherDesc[0].value}}
+				</div>
+				<div class="col-md-6 temp-text">
+					<span>{{item.current_condition[0].temp_C}}&#8451;</span>
+				</div>
+			</div>  
+		</div>
+	</div>
+</div>

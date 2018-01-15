@@ -1,0 +1,24 @@
+<form>
+	<div class="row">
+		<div class="col-md-3">From : </div>
+		<div class="col-md-5"><input type="text" ng-model="travel.from"/></div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">To : </div>
+		<div class="col-md-5"><input type="text" ng-model="travel.to"/></div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">Date : </div>
+		<div class="col-md-5">
+		 <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="" ng-model="travel.date" is-open="true" datepicker-options=""  close-text="Close" alt-input-formats="" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+    	</div>
+	</div>
+	<div class="row">		
+		<div class="col-md-3"><button class="btn btn-primary" ng-click="predict()">Predict Weather</button></div>
+	</div>	
+</form>

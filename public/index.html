@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="webresources/stylesheets/bootstrap.min.css">
+		<link rel="stylesheet" href="stylesheets/main.css">
+		<base href="/">
+	</head>	
+	<body ng-app="WeatherApp">
+		<div class="container-fluid">
+			<div class="row header">
+				<div class="col-md-10">
+					<span class="header-text">Weather Dashboard</span>
+				</div>
+				<!-- <div class="col-md-2">
+					<a href="javascript:void(0)" ng-click="">Travel Prediction</a>
+				</div> -->
+			</div> 
+			<div class="row view-port">
+				<div class="col-md-3">
+					
+				</div>
+				<div class="col-md-5">
+					<span class=""><input class="form-control" type="text" placeholder="Enter city name/latitude,longitude " ng-model="searchLoc"/></span>
+				</div>
+				<div class="col-md-1">
+					<button class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal"  ng-click="getData(searchLoc)">Search</button>
+				</div>
+				<div class="col-md-3" >
+					<a href="javascript:void(0)" ng-show="currentView=='/'" ng-click="toggleView()">Choose on map</a>
+					<a href="javascript:void(0)" ng-show="currentView=='/mapView'"  ng-click="toggleView()">Go to dashboard</a>
+				</div>
+			</div>
+			
+			<div style="margin-top:12%" ng-view>
+			</div>
+			<!-- Button trigger modal -->
+			
+			
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-lg" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">{{data.request[0].query.split(',')[0]}}</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">			      
+			      	<div class="row">
+		      			<div class="col-md-6">
+		      				Temperature
+		      			</div>
+		      				
+		      			<div class="col-md-6">
+		      				{{data.current_condition[0].temp_C}} C
+		      			</div>
+		      		</div>
+	      		 	<div class="row">
+		      			<div class="col-md-6">
+		      				Precipitation
+		      			</div>
+		      			<div class="col-md-6">
+		      				{{data.current_condition[0].precipMM}}
+		      			</div>
+		      		</div>
+	      		 	<div class="row">
+		      			<div class="col-md-6">
+		      				Humidity
+		      			</div>
+		      			<div class="col-md-6">
+		      				{{data.current_condition[0].humidity}}
+		      			</div>
+		      		</div>
+	      			<div class="row">
+		      			<div class="col-md-6">
+		      				Cloud cover
+		      			</div>
+		      			<div class="col-md-6">
+		      				{{data.current_condition[0].cloudcover}}
+		      			</div>
+		      		</div>
+		      		
+
+			        
+			      </div>
+			     <!--  <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div> -->
+			    </div>
+			  </div>
+			</div>
+		</div>		
+	</body>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script src= "webresources/scripts/angular.min.js" ></script>
+	<script src= "webresources/scripts/angular-route.js" ></script>
+	<script src= "webresources/scripts/bootstrap-ui.min.js" ></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc73w5czCX9GtN3CuCtGod9fuczMvbmmg"></script>
+	<script src= "scripts/main.js" ></script>
+	<script src= "scripts/mapController.js" ></script>
+	<script src= "scripts/dashboardController.js" ></script>
+	<script src= "scripts/prediction.js" ></script>
+	<script src= "scripts/GlobalService.js" ></script>
+</html>
