@@ -1,7 +1,7 @@
 var app = angular.module('WeatherApp',['ngRoute','ui.bootstrap']);
 app.config(init);
 
-app.run(function($rootScope,$location){
+app.run(function($rootScope,$location,GlobalService){
 	$rootScope.currentView = $location.$$url;
 	$rootScope.toggleView = function(){
 		if($location.$$url == '/'){
@@ -11,6 +11,12 @@ app.run(function($rootScope,$location){
 		}
 		$rootScope.currentView = $location.$$url;
 	};
+    $rootScope.getData = function(loc){       
+        var d = {loc:loc};
+        GlobalService.invokeAjax(d,"/api/getData","POST").then(function(response){
+            $rootScope.data = response.data.data;
+        });
+    };
 });
 
 function init ($routeProvider,$locationProvider){

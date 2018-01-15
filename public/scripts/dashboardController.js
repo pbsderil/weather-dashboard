@@ -4,14 +4,7 @@ app.controller('dashboardController',function($scope,GlobalService,$rootScope){
 
     $scope.setData = function(data){
     	$rootScope.data = data;
-    };
-
-    $rootScope.getData = function(loc){    	
-        var d = {loc:loc};
-        GlobalService.invokeAjax(d,"/api/getData","POST").then(function(response){
-            $rootScope.data = response.data.data;
-        });
-    };
+    };  
 
     (function(){    	
         GlobalService.invokeAjax("","/api/getBulkData","GET").then(function(response){

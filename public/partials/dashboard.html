@@ -12,7 +12,7 @@
 					<br/>{{item.current_condition[0].weatherDesc[0].value}}
 				</div>
 				<div class="col-md-6 temp-text">
-					<span>{{item.current_condition[0].temp_C}}&#8451;</span>
+					<span ng-class="{'red':(+item.current_condition[0].temp_C>30),'amber':(+item.current_condition[0].temp_C<=30 && +item.current_condition[0].temp_C>20),'green':(+item.current_condition[0].temp_C<=20)}">{{item.current_condition[0].temp_C}}&#8451;</span>
 				</div>
 			</div>  
 		</div>

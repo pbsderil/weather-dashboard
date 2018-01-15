@@ -55,3 +55,15 @@ body{
   margin-top: 10%;
   text-decoration: underline;
 }
+.green{
+  color:#40b732;
+}
+.amber{
+  color:#d0ca0c;
+}
+.red{
+  color:#f13d3d;
+}
+.modal-list-row{
+  height:30px;
+}

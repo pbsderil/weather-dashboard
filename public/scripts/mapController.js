@@ -1,11 +1,15 @@
 app.controller('mapController',function(GlobalService,$rootScope,$scope){
 	       
 
-        var uluru = {lat: -25.363, lng: 131.044},map,marker;
+        var uluru = {lat:12.977878559628712,lng:77.57231712341309},map,marker;
 
-        navigator.geolocation.getCurrentPosition((position)=>{
-            uluru.lat = position.coords.latitude;
-            uluru.lng = position.coords.longitude;
+        navigator.geolocation.getCurrentPosition(mapLoader);
+        
+        function mapLoader(position){
+          if(position){
+            uluru.lat =  position.coords.latitude;
+            uluru.lng =  position.coords.longitude;
+          }            
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 8,
               center: uluru
@@ -15,10 +19,15 @@ app.controller('mapController',function(GlobalService,$rootScope,$scope){
               map: map
             });
             google.maps.event.addListener(map, "click", clickHandler);
-        });
-        
+        }
+
+        if(!map){
+          mapLoader();
+        }
         
         var geocoder = new google.maps.Geocoder;
+
+        var address = "Bengaluru";
        
         function clickHandler(e){         
               uluru.lat = e.latLng.lat();
@@ -26,7 +35,7 @@ app.controller('mapController',function(GlobalService,$rootScope,$scope){
               marker.setPosition(e.latLng);
        
               geocoder.geocode({'location': e.latLng}, function(results, status) {
-                  console.log(results[0].formatted_address);   
+                  address = results[0].formatted_address;   
               });                   
         }
 
@@ -34,6 +43,7 @@ app.controller('mapController',function(GlobalService,$rootScope,$scope){
               var d = {loc : uluru.lat+","+uluru.lng}
               GlobalService.invokeAjax(d,"/api/getData","POST").then(function(response){
                   $rootScope.data = response.data.data;
+                  $rootScope.data.request[0].query = address;
               });
         }
 });

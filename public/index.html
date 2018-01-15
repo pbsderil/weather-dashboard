@@ -22,7 +22,8 @@
 					<span class=""><input class="form-control" type="text" placeholder="Enter city name/latitude,longitude " ng-model="searchLoc"/></span>
 				</div>
 				<div class="col-md-1">
-					<button class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal"  ng-click="getData(searchLoc)">Search</button>
+					<button class="btn btn-primary" ng-if="searchLoc" data-toggle="modal" data-target="#exampleModal"  ng-click="searchLoc && getData(searchLoc)">Search</button>
+					<button class="btn" disabled ng-if="!searchLoc"  >Search</button>
 				</div>
 				<div class="col-md-3" >
 					<a href="javascript:void(0)" ng-show="currentView=='/'" ng-click="toggleView()">Choose on map</a>
@@ -40,13 +41,28 @@
 			  <div class="modal-dialog modal-lg" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">{{data.request[0].query.split(',')[0]}}</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
+			      	<div class="row" style="width: 100%;" ng-if="!data.error">
+				      	<div class="col-sm-5">
+				        <h5 class="modal-title" id="exampleModalLabel">{{data.request[0].query.split(',')[0]}}</h5>
+				    	</div>
+				    	<div class="col-sm-3">
+				    		<img src="{{data.current_condition[0].weatherIconUrl[0].value}}" style="width:50px;">
+				    	</div>
+				    	<div class="col-sm-2" style="font-size: 20px;">
+				    		{{data.current_condition[0].weatherDesc[0].value}}
+				    	</div>
+			    	</div>
+			    	<div class="row" ng-if="data.error">
+			    		{{data.error[0].msg}}
+			    	</div>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+			    	
+			    	
 			      </div>
-			      <div class="modal-body">			      
-			      	<div class="row">
+			      <div class="modal-body" ng-if="!data.error">			      
+			      	<div class="row modal-list-row">
 		      			<div class="col-md-6">
 		      				Temperature
 		      			</div>
@@ -55,28 +71,58 @@
 		      				{{data.current_condition[0].temp_C}} C
 		      			</div>
 		      		</div>
-	      		 	<div class="row">
+		      		<hr/>
+		      		<div class="row modal-list-row">
+		      			<div class="col-md-6">
+		      				Feels Like
+		      			</div>		      				
+		      			<div class="col-md-6">
+		      				{{data.current_condition[0].FeelsLikeC}} C
+		      			</div>
+		      		</div>
+		      		<hr/>
+	      		 	<div class="row modal-list-row">
 		      			<div class="col-md-6">
 		      				Precipitation
 		      			</div>
 		      			<div class="col-md-6">
-		      				{{data.current_condition[0].precipMM}}
+		      				{{data.current_condition[0].precipMM}} mm
 		      			</div>
 		      		</div>
-	      		 	<div class="row">
+		      		<hr/>
+	      		 	<div class="row modal-list-row">
 		      			<div class="col-md-6">
-		      				Humidity
+		      				Humidity 
 		      			</div>
 		      			<div class="col-md-6">
 		      				{{data.current_condition[0].humidity}}
 		      			</div>
 		      		</div>
-	      			<div class="row">
+		      		<hr/>
+	      			<div class="row modal-list-row">
 		      			<div class="col-md-6">
 		      				Cloud cover
 		      			</div>
 		      			<div class="col-md-6">
 		      				{{data.current_condition[0].cloudcover}}
+		      			</div>
+		      		</div>
+		      		<hr/>
+		      		<div class="row modal-list-row">
+		      			<div class="col-md-6">
+		      				Pressure
+		      			</div>
+		      			<div class="col-md-6">
+		      				{{data.current_condition[0].pressure}}
+		      			</div>
+		      		</div>
+		      		<hr/>
+		      		<div class="row modal-list-row">
+		      			<div class="col-md-6">
+		      				Wind speed
+		      			</div>
+		      			<div class="col-md-6">
+		      				{{data.current_condition[0].windspeedKmph}} kmph
 		      			</div>
 		      		</div>
 		      		
