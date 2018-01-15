@@ -6,15 +6,15 @@ app.controller('dashboardController',function($scope,GlobalService,$rootScope){
     	$rootScope.data = data;
     };
 
-    $rootScope.getData = function(loc){
-    	var url = "http://api.worldweatheronline.com/premium/v1/weather.ashx?q="+loc+"&key=6aacf8851d6b4c3699184223180501&format=json&fx=no&mca=no&fx24=no";
-        GlobalService.invokeAjax("",url,"GET").then(function(response){
+    $rootScope.getData = function(loc){    	
+        var d = {loc:loc};
+        GlobalService.invokeAjax(d,"/api/getData","POST").then(function(response){
             $rootScope.data = response.data.data;
         });
     };
 
     (function(){    	
-        GlobalService.invokeAjax("","default.json","GET").then(function(response){
+        GlobalService.invokeAjax("","/api/getBulkData","GET").then(function(response){
             $scope.cities = response.data.data.area;
         });       
     })();

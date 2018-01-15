@@ -31,8 +31,8 @@ app.controller('mapController',function(GlobalService,$rootScope,$scope){
         }
 
         $scope.getData = function(){
-             var url = "http://api.worldweatheronline.com/premium/v1/weather.ashx?q="+uluru.lat+","+uluru.lng+"&key=6aacf8851d6b4c3699184223180501&format=json&fx=no&mca=no&fx24=no";
-              GlobalService.invokeAjax("",url,"GET").then(function(response){
+              var d = {loc : uluru.lat+","+uluru.lng}
+              GlobalService.invokeAjax(d,"/api/getData","POST").then(function(response){
                   $rootScope.data = response.data.data;
               });
         }
